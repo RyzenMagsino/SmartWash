@@ -1,21 +1,22 @@
-import React from 'react';
-import './style.css';
-
-console.log("✅ App.jsx is loaded"); // Check if this prints
-
+// src/App.jsx
 function App() {
-    return (
-      <div className="background">
-        <div className="login-container">
-          <h2>SmartWash</h2>
-          <form className="login-form">
-            <input type="email" placeholder="Email" required />
-            <input type="password" placeholder="Password" required />
-            <button type="submit">Log In</button>
-          </form>
-        </div>
-      </div>
-    );
-  }
+  return (
+    <div style={styles.container}>
+      <h1>Welcome to E&C Carwash Dashboard</h1>
+      <p>This is your dashboard after login.</p>
+    </div>
+  );
+}
+
+const styles = {
+  container: {
+    height: '100vh',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontFamily: 'Arial, sans-serif',
+  },
+};
 
 export default App;
