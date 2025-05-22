@@ -6,6 +6,7 @@ import Sales from './pages/sales/Sales';
 import Expense from './pages/expenses/expense';
 import Pos from './pages/pos/Pos';
 
+
 function App() {
   return (
     <div className="app-container">
@@ -18,6 +19,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/sales" element={<Sales />} />
         <Route path="/expense" element={<Expense />} />
+
 
         {/* 404 fallback */}
         <Route path="*" element={<h1>404 - Page Not Found</h1>} />
