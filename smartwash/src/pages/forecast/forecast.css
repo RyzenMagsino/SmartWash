@@ -1,0 +1,137 @@
+/* src/pages/Forecast/forecast.css */
+
+/* Base Styles */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: url('https://thumbs.dreamstime.com/b/blue-hued-banner-depicting-car-wash-offering-copy-space-362333599.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #000;
+  }
+  
+  /* Container */
+  .forecast-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+  }
+  
+  /* Header Styling */
+  .forecast-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to right, #1c3e5c, #3954a1);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Logo */
+  .logo {
+    font-size: 22px;
+    font-weight: bold;
+  }
+  
+  /* Nav Tabs */
+  nav.nav-tabs {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .nav-btn {
+    background: white;
+    color: #203a72;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 14px;
+    transition: 0.3s;
+  }
+  
+  .nav-btn.active,
+  .nav-btn:hover {
+    background: #e6ebf5;
+  }
+  
+  /* Profile Icon */
+  .profile-icon {
+    font-size: 22px;
+    color: white;
+  }
+  
+  /* Filter Section */
+  .filter-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 25px 30px 10px;
+  }
+  
+  .filter-section select,
+  .filter-btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  }
+  
+  .filter-btn {
+    font-weight: bold;
+    background: white;
+    border: 2px solid #203a72;
+    color: black;
+  }
+  
+  /* Chart Section */
+  .chart-section {
+    background: white;
+    color: black;
+    border-radius: 15px;
+    margin: 10px 30px;
+    padding: 1.5rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .chart-section h2 {
+    margin-bottom: 1rem;
+    font-size: 20px;
+  }
+  
+  /* Footer Banner */
+  .footer-banner {
+    margin-top: auto;
+    background-color: #222;
+    padding: 1rem;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: white;
+  }
+  
+  .tabs {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .tabs button {
+    background: white;
+    color: #203a72;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 14px;
+    transition: 0.3s;
+  }
+  
+  .tabs button:hover,
+  .tabs button.active {
+    background: #e6ebf5;
+  }
+  
