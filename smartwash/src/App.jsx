@@ -5,6 +5,7 @@ import Login from './pages/login/LoginPage';
 import Sales from './pages/sales/Sales';
 import Expense from './pages/expenses/expense';
 import Pos from './pages/pos/Pos';
+import Forecast from './pages/forecast/forecast';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/sales" element={<Sales />} />
         <Route path="/expense" element={<Expense />} />
+        <Route path="/forecast" element={<Forecast />} />
 
 
         {/* 404 fallback */}
