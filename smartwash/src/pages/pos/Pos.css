@@ -1,0 +1,398 @@
+/* Base Reset */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: url('https://thumbs.dreamstime.com/b/blue-hued-banner-depicting-car-wash-offering-copy-space-362333599.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #000;
+}
+
+/* POS Layout */
+.pos-screen {
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Header */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to right, #1c3e5c, #3954a1);
+  color: white;
+  padding: 15px 30px;
+  border-radius: 12px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.dashboard-header h1 {
+  font-size: 22px;
+  margin: 0;
+}
+
+.nav-tabs {
+  display: flex;
+  gap: 15px;
+}
+
+.nav-tabs button {
+  background: white;
+  color: #203a72;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 14px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.nav-tabs button.active,
+.nav-tabs button:hover {
+  background: #e6ebf5;
+}
+
+.profile-area {
+  display: flex;
+  gap: 15px;
+  font-size: 22px;
+}
+
+.gold-bell svg {
+  color: gold;
+}
+
+
+/* Top Row Inputs + Time */
+/* Top Row Inputs + Time */
+.top-row {
+  position: relative;
+  display: flex;
+  justify-content: flex-end; /* keep time-info right aligned */
+  align-items: center;
+  margin-top: 25px;
+  padding: 0 15px; /* keep original */
+  min-height: 60px; /* optional */
+}
+
+.top-row .inputs-group {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 15px;
+  /* no padding, no background, no box-shadow */
+}
+
+.top-row input,
+.filter-btn {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  background: white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.filter-btn {
+  font-weight: bold;
+  background: white;
+  border: 2px solid #203a72;
+  color: black;
+}
+
+.time-info {
+  text-align: right;
+  color: #fff;
+  font-weight: bold;
+  min-width: 180px;
+  z-index: 1; /* keep above inputs if overlapping */
+}
+
+.time-info .time {
+  font-size: 18px;
+}
+
+.time-info .date {
+  font-size: 13px;
+}
+
+
+
+/* Main Layout */
+.main-panel {
+  display: flex;
+  gap: 30px;
+  margin-top: 30px;
+  padding: 0 15px;
+  align-items: flex-start;
+}
+
+/* Services Grid (5 columns per row) */
+.services-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+}
+
+.service-btn {
+  background: #63c7e6;
+  color: black;
+  border: none;
+  font-size: 22px;
+  font-weight: bold;
+  padding: 30px 0;
+  border-radius: 10px;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease;
+}
+
+.service-btn:hover {
+  transform: translateY(-4px);
+  background: #54b2d1;
+}
+
+/* Summary Panel */
+.summary-panel {
+  width: 320px;
+  flex-shrink: 0;
+}
+
+.summary-box {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(6px);
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.summary-box h3 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.summary-list {
+  font-size: 15px;
+  text-align: left;
+  max-height: 180px;
+  overflow-y: auto;
+  margin-bottom: 15px;
+  padding-left: 0; /* remove default padding */
+}
+
+.summary-item {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  padding: 2px 0;
+}
+
+.summary-item > span:first-child {
+  color: red;
+  font-weight: bold;
+  margin-right: 6px;
+  cursor: pointer;
+}
+
+.item-line {
+  display: flex;
+  flex: 1;
+  align-items: center;
+}
+
+.item-label {
+  white-space: nowrap;
+}
+
+.item-dots {
+  flex: 1;
+  border-bottom: 1px dotted #555;
+  margin: 0 8px;
+  height: 1px;
+}
+
+.item-price {
+  white-space: nowrap;
+  font-weight: bold;
+}
+
+
+/* Cash & Total */
+.cash-info {
+  font-weight: bold;
+  text-align: right;
+  font-size: 15px;
+  margin-bottom: 12px;
+}
+
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #3759c6;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Payment Button */
+.payment-btn {
+  width: 100%;
+  padding: 12px;
+  background: #51b1cf;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+.payment-btn:hover {
+  background: #3d9fbd;
+}
+
+.cash-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #3759c6;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.cash-input {
+  width: 100px;
+  background: transparent;
+  border: none;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  text-align: right;
+  outline: none;
+}
+
+.cash-input::-webkit-outer-spin-button,
+.cash-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.cash-input {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.change-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #51b1cf;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.negative-change {
+  color: red;
+}
+
+
+/*car type*/
+.car-type-dropdown {
+  padding: 12px 30px 12px 20px; /* add more right padding to make space for the arrow */
+  border-radius: 10px;
+  font-size: 14px;
+  border: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  background: white;
+  font-weight: bold;
+  color: black;
+
+  /* Native arrow */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  /* Custom arrow positioning */
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3csvg xmlns='http://www.w3.org/2000/svg' width='10' height='5'%3e%3cpath fill='%23000' d='M0 0l5 5 5-5z'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 10px center; /* move arrow a bit left from right edge */
+  background-size: 10px 5px;
+  cursor: pointer;
+}
+
+
+.summary-header {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+
+
+/*receipt*/
+.receipt-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.receipt-box {
+  background: white;
+  padding: 30px 40px;
+  border-radius: 15px;
+  width: 350px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  text-align: center;
+}
+
+.receipt-box h2 {
+  margin-bottom: 20px;
+}
+
+.receipt-item,
+.receipt-total,
+.receipt-cash,
+.receipt-change {
+  display: flex;
+  justify-content: space-between;
+  margin: 8px 0;
+  font-weight: bold;
+}
+
+.receipt-box button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-weight: bold;
+  background: #51b1cf;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+}
+
+.receipt-box button:hover {
+  background: #3d9fbd;
+}

@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './forecast.css';
+import Navbar from '../../navbar/navbar';
+
 import {
   LineChart,
   Line,
@@ -60,6 +62,7 @@ const staffSalesData = [
 const Forecast = () => {
   const navigate = useNavigate();
   const [selectedAnalysis, setSelectedAnalysis] = useState('profit');
+  
 
   const getTitle = () => {
     switch (selectedAnalysis) {
@@ -87,68 +90,64 @@ const Forecast = () => {
     }
   };
 
+
+const handleLogout = () => {
+  navigate('/login');
+};
+
+
   return (
-    <div className="forecast-container">
-      <header className="forecast-header">
-        <div className="logo">E&C CARWASH</div>
-        <div className="tabs">
-          <button onClick={() => navigate('/pos')}>POS</button>
-          <button onClick={() => navigate('/sales')}>SALES</button>
-          <button onClick={() => navigate('/expense')}>EXPENSES</button>
-        </div>
-        <div className="profile-icon">👤</div>
-      </header>
+  <div className="forecast-body">
+    <div className="forecast-wrapper">
+      <div className="forecast-container">
+        <Navbar onLogout={handleLogout} />
 
-
-      <div className="filter-section">
-
-      
-        
-        <select id="year-select">
+        <div className="filter-section">
+          <select id="year-select">
             <option value="2024">2024</option>
             <option value="2023">2023</option>
             <option value="2022">2022</option>
-        </select>
+          </select>
 
+          <select
+            onChange={(e) => setSelectedAnalysis(e.target.value)}
+            value={selectedAnalysis}
+          >
+            <option value="profit">Profit Margin Analysis</option>
+            <option value="customer">Customer Growth</option>
+            <option value="staff">Sales and Staff Analysis</option>
+          </select>
+        </div>
 
-        <select
-          onChange={(e) => setSelectedAnalysis(e.target.value)}
-          value={selectedAnalysis}
-        >
-          <option value="profit">Profit Margin Analysis</option>
-          <option value="customer">Customer Growth</option>
-          <option value="staff">Sales and Staff Analysis</option>
-        </select>
-      </div>
-
-      
-
-      <div className="chart-section">
-        <h2>{getTitle()}</h2>
-        <ResponsiveContainer width="100%" height={300}>
-          <LineChart data={getData()}>
-            <CartesianGrid stroke="#ccc" />
-            <XAxis dataKey="month" />
-            <YAxis />
-            <Tooltip />
-            <Line
-              type="monotone"
-              dataKey="value"
-              stroke="#8884d8"
-              fill="#8884d8"
-              fillOpacity={0.3}
-            />
-          </LineChart>
-        </ResponsiveContainer>
+        <div className="chart-section">
+          <h2>{getTitle()}</h2>
+          <ResponsiveContainer width="100%" height={300}>
+            <LineChart data={getData()}>
+              <CartesianGrid stroke="#ccc" />
+              <XAxis dataKey="month" />
+              <YAxis />
+              <Tooltip />
+              <Line
+                type="monotone"
+                dataKey="value"
+                stroke="#8884d8"
+                fill="#8884d8"
+                fillOpacity={0.3}
+              />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
       </div>
 
       <div className="footer-banner">
         {selectedAnalysis === 'profit' && 'THERE IS A 30% INCREASE IN PROFIT IN 2024'}
         {selectedAnalysis === 'customer' && 'CUSTOMER BASE GREW BY 50% IN 2024'}
         {selectedAnalysis === 'staff' && 'STAFF SALES PERFORMANCE IMPROVED BY 20% IN 2024'}
-        </div>
+      </div>
     </div>
-  );
+  </div>
+);
+
 };
 
 export default Forecast;

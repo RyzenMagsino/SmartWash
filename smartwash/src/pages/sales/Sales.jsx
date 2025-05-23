@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './sales.css';
 import { FaUserCircle, FaBell, FaTrash, FaEdit } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import Navbar from '../../navbar/navbar';
 
 const initialSales = [
   { customer: 'Pedro Penduko', plate: '00001', service: 'EC1', time: '11:30', price: 130, status: 'blue' },
@@ -12,26 +13,12 @@ const initialSales = [
 export default function Sales() {
   const navigate = useNavigate();
   const [sales, setSales] = useState(initialSales);
-  const [showProfileDropdown, setShowProfileDropdown] = useState(false);
   const [showReport, setShowReport] = useState(false);
-  const [showForecast, setShowForecast] = useState(false);
-  const [showChangePassModal, setShowChangePassModal] = useState(false);
-  const [passForm, setPassForm] = useState({
-    oldPass: '',
-    newPass: '',
-    confirmPass: '',
-  });
-
-  // New states for status edit popup
   const [editingIndex, setEditingIndex] = useState(null);
   const [tempStatus, setTempStatus] = useState(null);
 
-  const handlePassChange = (e) => {
-    const { name, value } = e.target;
-    setPassForm(prev => ({ ...prev, [name]: value }));
-  };
-
   const handleLogout = () => navigate('/login');
+  const handleForecastClick = () => navigate('/forecast');
 
   const totalSales = sales.length;
   const totalRevenue = sales.reduce((sum, s) => sum + s.price, 0);
@@ -53,13 +40,11 @@ export default function Sales() {
     setSales(updated);
   };
 
-  // Open status picker popup
   const openStatusPicker = (index) => {
     setEditingIndex(index);
     setTempStatus(sales[index].status);
   };
 
-  // Confirm status change and update state
   const confirmStatusChange = () => {
     if (editingIndex !== null) {
       const updated = [...sales];
@@ -70,50 +55,14 @@ export default function Sales() {
     }
   };
 
-  // Cancel popup without changing
   const cancelStatusChange = () => {
     setEditingIndex(null);
     setTempStatus(null);
   };
 
-  const getForecastData = () => {
-    const avgDailyRevenue = totalRevenue / 7;
-    const forecast = [];
-    const today = new Date();
-
-    for (let i = 1; i <= 7; i++) {
-      const date = new Date(today);
-      date.setDate(today.getDate() + i);
-      forecast.push({
-        date: date.toISOString().split('T')[0],
-        projected: Math.round(avgDailyRevenue + (Math.random() - 0.5) * 50),
-      });
-    }
-    return forecast;
-  };
-
   return (
     <div className="dashboard">
-      <div className="dashboard-header">
-        <h1>E&C CARWASH</h1>
-        <div className="tabs">
-          <button onClick={() => navigate('/pos')}>POS</button>
-          <button onClick={() => navigate('/sales')}>SALES</button>
-          <button onClick={() => navigate('/expense')}>EXPENSES</button>
-        </div>
-        <div className="icons">
-          <FaBell />
-          <div className="profile-dropdown-wrapper">
-            <FaUserCircle onClick={() => setShowProfileDropdown(prev => !prev)} />
-            {showProfileDropdown && (
-              <div className="profile-dropdown">
-                <button onClick={() => setShowChangePassModal(true)}>Account</button>
-                <button onClick={handleLogout}>Logout</button>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
+      <Navbar onLogout={handleLogout} />
 
       <div className="top-bar">
         <input type="text" placeholder="MM-DD-YYYY 📅" />
@@ -135,7 +84,7 @@ export default function Sales() {
         </div>
         <div className="actions">
           <button className="report-btn" onClick={() => setShowReport(true)}>View Report</button>
-          <button className="report-btn" onClick={() => setShowForecast(true)}>View Forecast</button>
+          <button className="report-btn" onClick={handleForecastClick}>View Forecast</button>
         </div>
       </div>
 
@@ -175,32 +124,30 @@ export default function Sales() {
         </div>
       </div>
 
-      {/* Status picker modal */}
       {editingIndex !== null && (
         <div className="modal-backdrop" onClick={cancelStatusChange}>
           <div className="modal" onClick={e => e.stopPropagation()}>
             <h3>Choose Service Status</h3>
             <div className="status-list">
-  {[
-    { label: 'Pending', value: 'red' },
-    { label: 'Ongoing', value: 'yellow' },
-    { label: 'Completed', value: 'blue' },
-    { label: 'Picked up', value: 'green' },
-  ].map(({ label, value }) => (
-    <div
-      key={value}
-      className="status-item"
-      onClick={() => setTempStatus(value)}
-      role="button"
-      tabIndex={0}
-      onKeyDown={e => { if (e.key === 'Enter') setTempStatus(value); }}
-    >
-      <span className={`status-bullet ${tempStatus === value ? 'selected' : ''}`}></span>
-      <span>{label}</span>
-    </div>
-  ))}
-</div>
-
+              {[
+                { label: 'Pending', value: 'red' },
+                { label: 'Ongoing', value: 'yellow' },
+                { label: 'Completed', value: 'blue' },
+                { label: 'Picked up', value: 'green' },
+              ].map(({ label, value }) => (
+                <div
+                  key={value}
+                  className="status-item"
+                  onClick={() => setTempStatus(value)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={e => { if (e.key === 'Enter') setTempStatus(value); }}
+                >
+                  <span className={`status-bullet ${tempStatus === value ? 'selected' : ''}`}></span>
+                  <span>{label}</span>
+                </div>
+              ))}
+            </div>
             <div className="modal-buttons">
               <button className="add-btn" onClick={confirmStatusChange}>Confirm</button>
               <button className="report-btn" onClick={cancelStatusChange}>Cancel</button>
@@ -211,7 +158,7 @@ export default function Sales() {
 
       {showReport && (
         <div className="modal-backdrop" onClick={() => setShowReport(false)}>
-          <div className="modal" onClick={(e) => e.stopPropagation()}>
+          <div className="modal" id="report-modal" onClick={(e) => e.stopPropagation()}>
             <div className="report-modal-content">
               <h3>Sales Report Summary</h3>
               <table className="report-table">
@@ -239,77 +186,6 @@ export default function Sales() {
                 <button className="add-btn" onClick={() => window.print()}>Print</button>
                 <button className="report-btn" onClick={() => setShowReport(false)}>Close</button>
               </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {showForecast && (
-        <div className="modal-backdrop" onClick={() => setShowForecast(false)}>
-          <div className="modal" onClick={(e) => e.stopPropagation()}>
-            <div className="report-modal-content">
-              <h3>7-Day Sales Forecast</h3>
-              <table className="report-table">
-                <thead>
-                  <tr>
-                    <th>Date</th>
-                    <th>Projected Revenue (₱)</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {getForecastData().map((item, idx) => (
-                    <tr key={idx}>
-                      <td>{item.date}</td>
-                      <td>₱{item.projected.toLocaleString(undefined, { minimumFractionDigits: 2 })}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-              <div className="modal-buttons">
-                <button className="report-btn" onClick={() => setShowForecast(false)}>Close</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {showChangePassModal && (
-        <div className="modal-backdrop">
-          <div className="modal change-pass-modal">
-            <h2>Change Password</h2>
-            <div className="form-group">
-              <label htmlFor="oldPass">Old Password</label>
-              <input
-                type="password"
-                name="oldPass"
-                id="oldPass"
-                value={passForm.oldPass}
-                onChange={handlePassChange}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="newPass">New Password</label>
-              <input
-                type="password"
-                name="newPass"
-                id="newPass"
-                value={passForm.newPass}
-                onChange={handlePassChange}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="confirmPass">Confirm Password</label>
-              <input
-                type="password"
-                name="confirmPass"
-                id="confirmPass"
-                value={passForm.confirmPass}
-                onChange={handlePassChange}
-              />
-            </div>
-            <div className="modal-buttons">
-              <button className="add-btn">Save</button>
-              <button className="report-btn" onClick={() => setShowChangePassModal(false)}>Cancel</button>
             </div>
           </div>
         </div>

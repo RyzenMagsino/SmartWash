@@ -189,57 +189,82 @@ tbody tr:nth-child(odd) {
   border: 1px solid #ccc;
 }
 
-.modal-buttons {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-}
-
-/* Report-specific styling */
-.report-modal-content {
-  font-family: 'Arial', sans-serif;
-  padding: 20px;
+/* Make report modal wider and scrollable if needed */
+#report-modal {
+  width: 90vw;
+  max-width: 900px;
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 20px 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  background: white;
   color: black;
-
+  font-family: 'Arial', sans-serif;
   display: flex;
   flex-direction: column;
-  align-items: center;  /* centers children horizontally */
-  text-align: left;     /* keep cell content left aligned */
+  align-items: center;
 }
 
+/* Keep report modal content left-aligned */
+.report-modal-content {
+  width: 100%;
+  text-align: left;
+}
+
+/* Report title styling */
 .report-modal-content h3 {
-  margin-bottom: 15px;
   text-align: center;
+  color: #003366;
+  margin-bottom: 20px;
+}
+
+/* Full width table with clean borders */
+.report-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 15px;
+  font-size: 1rem;
+  color: black;
+  border: 1px solid #ccc;
+}
+
+/* Table header styling */
+.report-table th, .report-table td {
+  border: 1px solid #ccc;
+  padding: 10px 12px;
+  text-align: left;
+}
+
+/* Header background */
+.report-table th {
+  background-color: #f0f0f0;
+  font-weight: 600;
+}
+
+/* Zebra stripes for readability */
+.report-table tbody tr:nth-child(odd) {
+  background-color: #fafafa;
+}
+
+/* Total amount styling */
+.report-total {
+  text-align: right;
+  font-size: 1.3em;
+  font-weight: bold;
+  margin-top: 10px;
   color: #003366;
 }
 
-.report-table {
-  width: 90%;
-  max-width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 5px;
-  border: 1px solid #ccc;
+/* Modal buttons container */
+.modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
 }
 
-.report-table th, .report-table td {
-  border: 1px solid #ccc;
-  padding: 10px;
-  text-align: left;
-  color: black;
-}
-
-.report-table th {
-  background-color: #f0f0f0;
-}
-
-.report-total {
-  text-align: right;
-  font-size: 1.2em;
-  font-weight: bold;
-  margin-top: 10px;
-}
-
-/* Print styles */
+/* Print styles (unchanged) */
 @media print {
   body * {
     visibility: hidden;
@@ -254,14 +279,60 @@ tbody tr:nth-child(odd) {
     top: 0;
     left: 0;
     width: 100%;
-    background: white;
-    padding: 20px;
+    background: white !important;
     color: black;
+    padding: 20px;
+    font-size: 12pt;
+    line-height: 1.4;
+    box-shadow: none !important;
+    border-radius: 0 !important;
   }
 
   .modal-buttons {
     display: none;
   }
+
+  .report-table {
+    display: table;
+    width: 100%;
+    border-collapse: collapse; /* Important for consistent lines */
+  }
+
+  .report-table th,
+  .report-table td {
+    all: unset;
+    display: table-cell;
+    padding: 8px 10px;
+    text-align: left;
+    color: black;
+    border: 1px solid black; /* Add table lines */
+  }
+
+  .report-table thead {
+    font-weight: bold;
+  }
+
+  .report-table tbody tr {
+    background: transparent !important;
+  }
+
+  .report-total {
+    color: black;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-top: 20px;
+    text-align: right;
+  }
+}
+
+
+.modal-buttons button {
+  font-size: 1.1rem;     /* slightly larger font */
+  padding: 12px 24px;    /* bigger clickable area */
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
 .profile-dropdown button:hover {

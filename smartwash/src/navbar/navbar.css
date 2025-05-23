@@ -1,0 +1,211 @@
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #000000;
+  color: white;
+  padding: 10px 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.dashboard-header h1 {
+  font-size: 24px;
+  margin: 0;
+}
+
+.nav-tabs {
+  display: flex;
+  gap: 10px;
+}
+
+.nav-tabs button {
+  background-color: transparent;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+.nav-tabs button.active,
+.nav-tabs button:hover {
+  border-bottom: 2px solid #ffd700;
+}
+
+.profile-area {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+}
+
+.gold-bell {
+  color: gold;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.profile-dropdown-wrapper svg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  cursor: pointer;
+  line-height: 1; /* ensures vertical alignment */
+}
+
+.profile-dropdown-wrapper svg {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.profile-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #333;
+  border: 1px solid #666;
+  border-radius: 5px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  z-index: 999;
+}
+
+.profile-dropdown button {
+  background: none;
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.profile-dropdown button:hover {
+  background-color: #444;
+}
+
+
+/*Notification*/
+.notification-wrapper {
+  position: relative;
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+.notification-dropdown {
+  position: absolute;
+  top: 30px;
+  right: 0;
+  background-color: #fff;
+  width: 300px;
+  max-height: 300px;
+  overflow-y: auto;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  border-radius: 8px;
+  z-index: 1000;
+  padding: 10px;
+}
+
+.notification-item {
+  padding: 10px;
+  margin-bottom: 10px; 
+  border-bottom: 1px solid #2f1882;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.notification-item:hover {
+  background-color: #9c9dba;
+}
+
+.notification-item strong {
+  display: block;
+  font-size: 14px;
+  color: #333;
+}
+
+.notification-item p {
+  font-size: 13px;
+  margin: 4px 0;
+  color: #000;
+}
+
+.notification-item .timestamp {
+  font-size: 11px;
+  color: #888;
+}
+
+
+.notification-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 100vh;
+  background: linear-gradient(to right, rgba(28, 62, 92, 0.95), rgba(57, 84, 161, 0.90));
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
+  z-index: 2000;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  border-radius: 10px 0 0 10px;
+}
+
+.notification-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.notification-header h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #fff;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 25px;
+  cursor: pointer;
+  color: #fff;
+}
+
+.notification-list {
+  overflow-y: auto;
+  flex: 1;
+}
+
+.notification-item {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  color: #000;
+  background-color: #fff;
+}
+
+.notification-item:hover {
+  background-color: #f5f5f5;
+}
+
+.notification-item strong {
+  font-size: 14px;
+  color: #000;
+}
+
+.notification-item p {
+  font-size: 13px;
+  margin: 4px 0;
+  color: #000;
+}
+
+.notification-item .timestamp {
+  font-size: 11px;
+  color: #555;
+}

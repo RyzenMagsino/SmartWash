@@ -1,22 +1,29 @@
 /* src/pages/Forecast/forecast.css */
 
 /* Base Styles */
-body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: url('https://thumbs.dreamstime.com/b/blue-hued-banner-depicting-car-wash-offering-copy-space-362333599.jpg') no-repeat center center fixed;
-    background-size: cover;
-    color: #000;
-  }
   
-  /* Container */
-  .forecast-container {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
-  }
-  
+  /* Global Styles */
+.forecast-body {
+  min-height: 100vh;
+  padding: 20px;
+  background: url('https://thumbs.dreamstime.com/b/blue-hued-banner-depicting-car-wash-offering-copy-space-362333599.jpg') no-repeat center center fixed;
+  background-size: cover;
+  font-family: Arial, sans-serif;
+  color: white;
+}
+
+.forecast-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 40px); /* adjusts for .forecast-body padding */
+}
+
+.forecast-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}  
   /* Header Styling */
   .forecast-header {
     display: flex;
@@ -65,21 +72,20 @@ body {
   
   /* Filter Section */
   .filter-section {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin: 25px 30px 10px;
-  }
-  
-  .filter-section select,
-  .filter-btn {
-    padding: 12px 20px;
-    border: none;
-    border-radius: 10px;
-    font-size: 14px;
-    background: rgba(255, 255, 255, 0.9);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-  }
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 1rem 2rem 0;
+}
+
+.filter-section select {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
   
   .filter-btn {
     font-weight: bold;
@@ -89,49 +95,89 @@ body {
   }
   
   /* Chart Section */
-  .chart-section {
-    background: white;
-    color: black;
-    border-radius: 15px;
-    margin: 10px 30px;
-    padding: 1.5rem;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-  }
-  
-  .chart-section h2 {
-    margin-bottom: 1rem;
-    font-size: 20px;
-  }
+.chart-section {
+  background: white;
+  color: black;
+  border-radius: 15px;
+  margin: 1rem 2rem;
+  padding: 1.5rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  flex: 1;
+  overflow-y: auto;
+}
+
+.chart-section h2 {
+  margin-bottom: 1rem;
+  font-size: 20px;
+}
   
   /* Footer Banner */
-  .footer-banner {
-    margin-top: auto;
-    background-color: #222;
-    padding: 1rem;
-    text-align: center;
-    font-weight: bold;
-    font-size: 1.2rem;
-    color: white;
-  }
-  
-  .tabs {
-    display: flex;
-    gap: 15px;
-  }
-  
-  .tabs button {
-    background: white;
-    color: #203a72;
-    border: none;
-    padding: 8px 20px;
-    border-radius: 12px;
-    font-weight: bold;
-    font-size: 14px;
-    transition: 0.3s;
-  }
-  
-  .tabs button:hover,
-  .tabs button.active {
-    background: #e6ebf5;
-  }
-  
+ .footer-banner {
+  background-color: #222;
+  padding: 1rem;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: white;
+}
+
+
+/* Tabs */
+.tabs {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+}
+
+.tabs button {
+  margin: 0 5px;
+  padding: 8px 16px;
+  background: white;
+  border: none;
+  border-radius: 20px;
+  color: #003366;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.tabs button:hover,
+.tabs button.active {
+  background: #e6ebf5;
+}
+
+/* Card / Container Styling */
+.card {
+  background: white;
+  color: black;
+  padding: 20px;
+  border-radius: 10px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Top Bar / Utility Container */
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+  width: 100%;
+  gap: 20px;
+}
+
+/* Optional: Adjust chart or result container */
+.forecast-chart-container {
+  margin-top: 40px;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 12px;
+  color: #003366;
+}
