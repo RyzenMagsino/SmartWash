@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { FaBell, FaUserCircle } from 'react-icons/fa';
-import './Navbar.css';
+import './navbar.css';
 
 export default function Navbar({ onLogout }) {
   const navigate = useNavigate();
