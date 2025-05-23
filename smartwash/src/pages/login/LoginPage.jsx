@@ -8,7 +8,7 @@ function LoginPage() {
   const handleLogin = (e) => {
     e.preventDefault();
     // You can add login logic here (e.g., validation)
-    navigate('/expense');
+    navigate('/pos');
   };
 
   return (
